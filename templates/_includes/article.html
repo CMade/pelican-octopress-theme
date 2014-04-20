@@ -15,9 +15,12 @@
     <a rel="full-article" href="{{ SITEURL }}/{{ article.url }}">Read On &crarr;</a>
 </footer>
 {% else %}
-
 <p class="meta-up">
     {% include '_includes/article_infos.html' %}
 </p>
-<div class="entry-content">{{ article.content }}</div>
+<div class="entry-content">
+    <!-- reuse summary -->
+    {{ article.summary }}
+    {{ article.content }}
+</div>
 {% endif %}

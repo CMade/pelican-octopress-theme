@@ -14,28 +14,35 @@ function getNav() {
 }
 
 function addSidebarToggler() {
-  if(!$('body').hasClass('sidebar-footer')) {
-    $('#content').append('<span class="toggle-sidebar"></span>');
-    $('.toggle-sidebar').bind('click', function(e) {
-      e.preventDefault();
-      if ($('body').hasClass('collapse-sidebar')) {
-        $('body').removeClass('collapse-sidebar');
-      } else {
-        $('body').addClass('collapse-sidebar');
-      }
-    });
-  }
-  var sections = $('aside.sidebar > section');
-  if (sections.length > 1) {
-    sections.each(function(section, index){
-      if ((sections.length >= 3) && index % 3 === 0) {
-        $(section).addClass("first");
-      }
-      var count = ((index +1) % 2) ? "odd" : "even";
-      $(section).addClass(count);
-    });
-  }
-  if (sections.length >= 3){ $('aside.sidebar').addClass('thirds'); }
+    var body = $("body");
+//    if ($("#content").find("aside.sidebar").length == 0) {
+//        $("#content").css("margin-right", 0);
+//        return;
+//    }
+    if (!$('body').hasClass('sidebar-footer')) {
+        $("#content").append('<span class="toggle-sidebar"></span>');
+        $('.toggle-sidebar').bind('click', function (e) {
+            e.preventDefault();
+            if (body.hasClass('collapse-sidebar')) {
+                body.removeClass('collapse-sidebar');
+            } else {
+                body.addClass('collapse-sidebar');
+            }
+        });
+    }
+    var sections = $('aside.sidebar > section');
+    if (sections.length > 1) {
+        sections.each(function (section, index) {
+            if ((sections.length >= 3) && index % 3 === 0) {
+                $(section).addClass("first");
+            }
+            var count = ((index + 1) % 2) ? "odd" : "even";
+            $(section).addClass(count);
+        });
+    }
+    if (sections.length >= 3) {
+        $('aside.sidebar').addClass('thirds');
+    }
 }
 
 function testFeatures() {
@@ -116,6 +123,25 @@ function renderDeliciousLinks(items) {
   $('#delicious').html(output);
 }
 
+function stickNavigator(){
+
+    width = $("nav").css("width");
+
+    $(window).scroll(function () {
+        if ($("body").height() - $(window).height() < 200){
+            return;
+        }
+
+        if ($(this).scrollTop() > 125) {
+            $("body").addClass("nav-fixed");
+            $("nav").css("width", width);
+        } else {
+            $("body").removeClass("nav-fixed");
+
+        }
+    });
+}
+
 $.domReady(function() {
   testFeatures();
   wrapFlashVideos();
@@ -123,6 +149,7 @@ $.domReady(function() {
   addCodeLineNumbers();
   getNav();
   addSidebarToggler();
+  stickNavigator();
 });
 
 // iOS scaling bug fix
