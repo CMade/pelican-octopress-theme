@@ -1,8 +1,34 @@
-.highlight, html .gist .gist-file .gist-syntax .gist-highlight {
-  table td.code { width: 100%; }
+/*
+Syntax highlighting scheme for Pygments generated HTML.
+Require linenos=table set.
+Refer to the HttpFormatter section of Pygments documentaion for more details.
+
+Being colorized structure should looks like,
+
+<table class='highlighttable'>
+  <td class='linenos'>
+    <div class='linenodiv'>
+      <pre>
+    </div>
+  </td>
+  <td class='code'>
+    <div class='highlight'>
+      <pre></pre>
+    </div>
+  </td>
+</table>
+
+Author: Fan Zhang <hello.zhang1992@gmail.com>
+License: MIT License
+Credit: Inspired by Solarized and Octopress
+*/
+
+table.highlighttable {
+  td.code { width: 100%; }
   border: 1px solid $pre-border !important;
 }
-.highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+
+.highlighttable .linenos {
   text-align: right;
   font-size: 13px;
   line-height: 1.45em;
@@ -22,64 +48,32 @@
   @include border-radius(0);
 }
 
-figure.code, .gist-file, pre {
+table.highlighttable {
   @include box-shadow(rgba(#000, .06) 0 0 10px);
   .highlight pre { @include box-shadow(none); }
-}
-
-.gist .highlight, figure.code .highlight {
-  @include selection(adjust-color($base03, $lightness: 23%, $saturation: -65%), $text-shadow: $base03 0 1px);
-}
-html .gist .gist-file {
-  margin-bottom: 1.8em;
   position: relative;
   border: none;
-  padding-top: image-height("code_bg.png") !important;
   .highlight {
     margin-bottom: 0;
   }
-  .gist-syntax {
-    border-bottom: 0 !important;
-    background: none !important;
-    .gist-highlight {
-      background: $base03 !important;
-    }
-    .highlight pre {
-      @extend .pre-code;
-      padding: 0;
-    }
-  }
-  .gist-meta {
-   padding: .6em 0.8em;
-   border: 1px solid lighten($base02, 2) !important;
-   color: $base01;
-   font-size: .7em !important;
-   @if $solarized == light {
-     background: lighten($base03, 2) $noise-bg;
-     border: 1px solid $pre-border !important;
-     border-top: 1px solid lighten($base03, 2) !important;
-   } @else {
-     background: $base02 $noise-bg;
-   }
-   @extend .sans;
-   line-height: 1.5em;
-    a {
-      color: mix($base1, $base01) !important;
-      @include hover-link;
-      &:hover { color: $base1 !important; }
-    }
-    a[href*='#file'] {
-      position: absolute; top: 0; left:0; right:-10px;
-      color: #474747 !important;
-      @extend .code-title;
-      &:hover { color: $link-color !important; }
-    }
-    a[href*=raw]{
-      @extend .download-source;
-      top: .4em;
-    }
+  background: none;
+  padding: 0;
+  border: 0;
+  margin-bottom: 1.5em;
+  pre { margin-bottom: 0; }
+  .highlight {
+    margin-bottom: 0;
   }
 }
+
+table.highlighttable td.code {
+  padding-left: 10px;
+}
+
+table.highlighttable td.code .highlight {
+  @include selection(adjust-color($base03, $lightness: 23%, $saturation: -65%), $text-shadow: $base03 0 1px);
+}
+
 pre {
   background: $pre-bg $noise-bg;
   @include border-radius(.4em);
@@ -92,13 +86,13 @@ pre {
   color: $pre-color;
   overflow: auto;
 }
+
 h3.filename {
   @extend .code-title;
   + pre { @include border-top-radius(0px); }
 }
 
-p, li {
-  code {
+tt.literal{
     @extend .mono;
     display: inline-block;
     white-space: no-wrap;
@@ -110,8 +104,6 @@ p, li {
     @include border-radius(.4em);
     padding: 0 .3em;
     margin: -1px 0;
-  }
-  pre code { font-size: 1em !important; background: none; border: none; }
 }
 
 .pre-code {
@@ -193,7 +185,7 @@ p, li {
   div { .gd, .gd .x, .gi, .gi .x { display: inline-block; width: 100%; }}
 }
 
-.highlight, .gist-highlight {
+.highlighttable, .highlight, .gist-highlight {
   pre { background: none; @include border-radius(0px); border: none; padding: 0; margin-bottom: 0; }
   margin-bottom: 1.8em;
   background: $base03;
@@ -213,23 +205,12 @@ pre, .highlight, .gist-highlight {
   &::-webkit-scrollbar-thumb:horizontal { background: $solar-scroll-thumb;  -webkit-border-radius: 4px; border-radius: 4px }
 }
 
-.highlight code { 
+.highlighttable, .highlight code {
   @extend .pre-code; background: #000;
 }
-figure.code {
-  background: none;
-  padding: 0;
-  border: 0;
-  margin-bottom: 1.5em;
-  pre { margin-bottom: 0; }
-  figcaption {
-    position: relative;
-    @extend .code-title;
-    a { @extend .download-source; }
-  }
-  .highlight {
-    margin-bottom: 0;
-  }
+
+table.highlighttable {
+
 }
 
 .code-title {

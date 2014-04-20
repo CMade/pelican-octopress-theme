@@ -32,7 +32,8 @@ article {
     background: $img-border top left repeat-x;
   }
   .entry-content & h2:first-child, header + h2 { padding-top: 0; }
-  h2:first-child, header + h2 { background: none; }
+/* should be useless */
+//  h2:first-child, header + h2 { background: none; }
   .feature {
     padding-top: .5em;
     margin-bottom: 1em;
@@ -66,7 +67,7 @@ article {
     }
   }
 
-  p.meta-main {
+  p.meta-up {
     @extend footer;
     position: relative;
     top: -25px;
