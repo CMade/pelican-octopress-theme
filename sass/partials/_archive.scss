@@ -62,6 +62,13 @@
     line-height: 1.1em;
     }
   }
+
+  footer span.info{
+    font-size: medium;
+    a, a:hover, a:visited {
+      text-decoration: none;
+    }
+  }
 }
 #content > .category {
   article {
