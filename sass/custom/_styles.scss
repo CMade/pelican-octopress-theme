@@ -12,8 +12,8 @@
 }
 
 body {
-  margin: $body-top-margin auto;
-  @include border-radius(.4em);
+  margin: 0 auto $body-top-margin;
+//  @include border-radius(.4em);
   @if $page-bg-shadow-color {
     @include single-box-shadow($page-bg-shadow-color, 0, 0, 20px, 0px);
   }

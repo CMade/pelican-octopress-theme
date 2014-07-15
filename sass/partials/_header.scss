@@ -1,23 +1,13 @@
 body > header {
-
-  padding-left: 60px;
-
   @if $header-off {
     display: none;
   }
-
-  @include border-top-radius(.4em);
   overflow: hidden;
-
   @if $header-bg-img {
     background: $header-bg-img;
   }
   @else {
     background: $header-bg;
-  }
-
-  h1, h2 {
-    //text-shadow: 1px 2px 0px white;
   }
 
   h1 {
